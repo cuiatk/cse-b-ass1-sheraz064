@@ -109,7 +109,13 @@ public class TurtleSoup {
      *         otherwise of size (# of points) - 1
      */
     public static List<Double> calculateHeadings(List<Integer> xCoords, List<Integer> yCoords) {
-        throw new RuntimeException("implement me!");
+    	List<Double> headings = new ArrayList<Double>();
+        double relHeading = 0.0;
+        for(int x = 0; x < xCoords.size()-1; x++){
+            relHeading = calculateHeadingToPoint(relHeading, xCoords.get(x), yCoords.get(x), xCoords.get(x+1), yCoords.get(x+1));
+            headings.add(relHeading);
+        }
+        return headings;
     }
 
     /**
@@ -143,12 +149,17 @@ public class TurtleSoup {
      * @param args unused
      */
     public static void main(String args[]) {
-        DrawableTurtle turtle = new DrawableTurtle();
+    	 DrawableTurtle turtle = new DrawableTurtle();
 
-        drawSquare(turtle, 40);
+         drawSquare(turtle, 40);
 
-        // draw the window
-        turtle.draw();
+         // draw the window
+         turtle.draw();
+         
+         drawRegularPolygon(turtle,5, 60);
+         drawPersonalArt(turtle);
+        
+         turtle.draw();
     }
 
 }
